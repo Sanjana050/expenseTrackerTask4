@@ -2,10 +2,23 @@ const User=require('../model/user');
 const path=require('path');
 const validate=(email,password)=>{
     return User.findAll().then((users)=>{
-        return users.some((user)=>{
-            (user.email===email && user.password===password)
-        })
-    }).catch((err)=>{
+        for(let user of users){
+
+             if(user.email===email && user.password===password)
+            {
+                return "true";
+            }
+            else if(user.email===email && user.password!==password)
+            {
+                return "wrong password"
+            }
+        }
+           
+                return "user does not exist"
+            
+          
+           
+        }).catch((err)=>{
         console.log(err)
     })
 }
@@ -17,10 +30,15 @@ exports.postLogin=(req,res,next)=>{
     const password=req.body.password;
     
    validate(email,password).then((result)=>{
-    if(result==false){
-res.sendFile(path.join(__dirname,'../','views','loginfail.html'))
+    if(result=="user does not exist"){
+res.status(404).sendFile(path.join(__dirname,'../','views','loginfail.html'))
     }
-    else{
+    else if(result=="wrong password"){
+        res.status(401).sendFile(path.join(__dirname,'../','views','passwrong.html'))
+    }
+    else if(result=="true")
+       {
+        console.log('successful')
 res.redirect('/expense');
     }
    })
