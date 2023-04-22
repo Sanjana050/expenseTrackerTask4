@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+    <style>
+        body{
+            background: url('https://img.freepik.com/premium-photo/grunge-background_196038-9966.jpg?size=626&ext=jpg&ga=GA1.1.1554987159.1680416334&semt=ais');
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            background-position: center center;
+            background-attachment:fixed;
+    
+            background-size: cover;
+
+            
+        }
+        .form-control{
+         display: flex;
+         flex-direction: column;
+         margin:12rem 29rem;
+        }
+        .form-content{
+            margin:23px;
+            padding:1rem;
+            
+        }
+       #name, #password,#phone,#email{
+            border-radius: .5rem;
+            padding:.2rem;
+            background: transparent;
+            border:1px solid white;
+            width:23rem;
+
+            
+        }
+        .btn{
+            margin-top:2rem;
+            width:10rem;
+            height:2rem;
+            background-color: black;
+            color:white;
+            border-radius: .5rem;
+            padding:.5rem;
+            position:relative;
+            margin-top:2rem;
+            margin-left:7rem;
+            cursor:pointer;
+        }
+        
+
+
+    </style>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <form class="form-control" method="POST" action="/addlogin">
+
+   
+    <div class="from-content">
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" required>
+</div>
+
+<div class="from-content">
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" required>
+</div>
+
+<button  class="btn" type="submit">Login</button>
+   </form>
+  
+</body>
+</html>

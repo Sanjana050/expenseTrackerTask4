@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+     body{
+        background-color: rgb(8, 8, 8);
+        margin:0;
+        padding:0;
+        color:white;
+     }
+     .main{
+    
+        
+        margin-top: 8rem;
+        
+     }
+     .main{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height:23vh;
+     }
+     .heading{
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        color:white;
+        
+        justify-content: center;
+        height:13px;
+        size:13px;
+        font-weight:400;
+        font-size:23px;
+        background-color: lightgreen;
+        padding:23px;
+        border:1px solid white;
+        border-radius: .5rem;
+        position:relative;
+        
+        width:75rem;
+        margin:13px;
+
+
+        
+     }
+     .form-control{
+        position:absolute;
+
+     }
+     .btn{
+        background: lightgreen;
+        padding:1rem;
+        border-radius: .5rem;
+        border:1px solid white
+     }
+img{
+    border:2px solid white;
+    border-radius: .5rem;
+    height:18rem;
+    width:21rem;
+    margin: auto;
+}
+.heading .namehead{
+    margin-left:27rem;
+}
+.form-control{
+    display: flex;
+    position: absolute;
+    margin-left: 30rem;
+    margin-top: 29rem;
+}
+.loginform{
+    margin:33px;
+    margin-left:8rem;
+    
+}
+#signup{
+    margin:33px;
+    cursor:pointer;
+}
+#login{
+    cursor:pointer;
+}
+.log{
+    position:absolute;
+    flex-direction:column;
+    margin-top: -2rem;
+}
+    </style>
+</head>
+<body>
+    <div class="main">
+        <nav class="heading">
+            <div class="namehead">welcome to expense tracker app</div>
+            
+        </nav>
+        
+            <img src="https://uploads.republic.com/p/offerings/slider_media_items/previews/default_2x/000/005/664/5664-1675208808-249a470a5c34169d2c8bc1d47cdd2de86cece565.jpg">
+
+       
+       
+        
+    <div class="form-control">
+        <form action="/sign-up" method="POST">
+            <button class="btn" type="submit" id="signup">Sign-Up</button>
+        </form>
+        
+        <form action="/login" method="POST" class="loginform">
+            <label for="login" class="log">Existing User?</label>
+            <button class="btn" type="submit" id="login">Login</button>
+        </form>
+            </div>
+    </div>
+
+
+           
+    
+</body>
+</html>
