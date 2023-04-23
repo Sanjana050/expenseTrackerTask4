@@ -1,18 +1,21 @@
 const User=require('../model/user');
 const path=require('path');
+const bcrypt=require('bcrypt')
 const validate=(email,password)=>{
     return User.findAll().then((users)=>{
         for(let user of users){
 
-             if(user.email===email && user.password===password)
-            {
-                return "true";
-            }
-            else if(user.email===email && user.password!==password)
-            {
-                return "wrong password"
-            }
+            if (user.email === email) {
+                return bcrypt.compare(password, user.password).then((match) => {
+                  if (match) {
+                    return "true"; // passwords match
+                  } else {
+                    return "wrong password"; // passwords don't match
+                  }
+                });
+            
         }
+    }
            
                 return "user does not exist"
             
@@ -38,8 +41,9 @@ res.status(404).sendFile(path.join(__dirname,'../','views','loginfail.html'))
     }
     else if(result=="true")
        {
-        console.log('successful')
-res.redirect('/expense');
+        console.log('successful');
+        res.redirect('/login?status=success');
+        
     }
    })
     

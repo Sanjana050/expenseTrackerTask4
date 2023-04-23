@@ -31,6 +31,9 @@
 
             
         }
+        #message {
+  display: none;
+}
         .btn{
             margin-top:2rem;
             width:10rem;
@@ -69,7 +72,16 @@
 </div>
 
 <button  class="btn" type="submit">Login</button>
+<div id="message"></div>
    </form>
+   
+   <script>
+    const message = window.location.search.split('=')[1];
+    if (message === 'success') {
+      document.getElementById('message').innerHTML = 'Login successful';
+      document.getElementById('message').style.display = 'block';
+    }
+  </script>
   
 </body>
 </html>

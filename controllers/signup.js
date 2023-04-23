@@ -1,5 +1,8 @@
 const path=require('path');
 const User=require('../model/user')
+const bcrypt=require('bcrypt');
+const saltrounds=10;
+
 
 const findEmail = (email) => {
     return User.findAll()
@@ -29,33 +32,36 @@ exports.postAddUser=(req,res,next)=>{
     const password=req.body.password;
     const phone=req.body.phone;
 
-findEmail(email).then((result)=>{
-    if(result==true)
-    {
-   res.sendFile(path.join(__dirname,'../','views','userexists.html'))
-      return;
-    }
-    else{
-        User.create({
-            name:name,
-            email:email,
-            password:password,
-            phone:phone
-        }).then((result)=>{
-            console.log('User added')
-            res.redirect('/user')
-        }).catch((err)=>{
-            console.log(err)
+    findEmail(email).then((result)=>{
+        if(result==true)
+        {
+            res.sendFile(path.join(__dirname,'../','views','userexists.html'))
+            return;
+        }
+        else{
+
+            bcrypt.hash(password, saltrounds, (err, hash) => {
+                if (err) {
+                  console.log(err.message);
+                  res.status(500).send("Internal Server Error");
+                  return;
+                }
+
+            User.create({
+                name:name,
+                email:email,
+                password:hash,
+                phone:phone
+            }).then((result)=>{
+                console.log('User added');
+                res.redirect('/adduser');
+            
+            }).catch((err)=>{
+                console.log(err.message); // log the error message to the console
+                res.status(500).send('Internal Server Error');
+            });
         })
-    
     }
-    
-    })
+
+})
 }
-
-
-
-
-
-
-    
