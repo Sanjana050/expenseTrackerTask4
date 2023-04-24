@@ -38,11 +38,13 @@ res.status(404).sendFile(path.join(__dirname,'../','views','loginfail.html'))
     }
     else if(result=="wrong password"){
         res.status(401).sendFile(path.join(__dirname,'../','views','passwrong.html'))
+        
     }
     else if(result=="true")
        {
         console.log('successful');
-        res.redirect('/login?status=success');
+       // res.redirect('/login?status=success');
+       res.redirect('/expense')
         
     }
    })

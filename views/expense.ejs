@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Expense App</title>
+    <style>
+        body{
+ background: url('https://img.freepik.com/premium-photo/grunge-background_196038-9966.jpg?size=626&ext=jpg&ga=GA1.1.1554987159.1680416334&semt=ais');
+        }
+
+        ul{
+            list-style: none;
+        }
+       .expense-form
+       {
+        display:flex;
+        margin:23px;
+        display:grid;
+        grid-template-columns: repeat(3,1fr);
+        grid-template-rows: repeat(2,1fr);
+
+
+       }
+       .form-content label{
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+       }
+       .form-content input{
+        border-radius:.2rem;
+        border: 1px solid white;
+        background: transparent;
+        padding:.2rem;
+       }
+       .form-content .amount{
+        
+grid-column:1/2
+       }
+
+       .description{
+        grid-column: 2/3;
+       }
+       .category{
+        grid-column:1/2;
+        grid-row:1/2
+       }
+       .form-content{
+        padding:5rem;
+       }
+
+       .btn{
+        
+        color: rgb(16, 15, 15);
+        height:28px;
+        padding:.1rem;
+        width:10rem;
+        grid-column:2/3;
+        margin-left:5rem;
+        border-radius:.5rem;
+        background: transparent;
+        cursor:pointer;
+        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-size:15px;
+        
+       }
+    </style>
+</head>
+<body>
+
+
+    <div class="container">
+        <form  class="expense-form" action="/add-expense" method="POST">
+
+            <div class="form-content">
+                <label for="amount">Amount</label>
+                <input type="number" name="amount" class="amount" id="amount">
+            </div>
+
+            <div class="form-content">
+                <label for="description">Description</label>
+                <input type="text" name="description" class="description" id="description">
+            </div>
+
+            <div class="form-content">
+                <label for="category">Category</label>
+                <br>
+                <select id="category" name="category">
+                    <option value="food">Food</option>
+                    <option value="furniture">Furniture</option>
+                    <option value="travel">Travel</option>
+                    <option value="clothes">Clothes</option>
+                    <option value="skincare">Skincare</option>
+                  </select>
+
+                  
+            </div>
+           
+
+<button type="submit" class="btn">Add Expense</button>
+
+        </form>
+        <ul class="expense-list">
+            <% for (let i = 0; i < expenses.length; i++) { %>
+                <li id="expense/<%= expenses[i].id %>">
+                    <div class="listitem">
+                      <span><%= expenses[i].description %>: <%= expenses[i].amount %></span>
+                      <form action="/delete-expense" method="POST">
+                        <input type="hidden" name="expenseId" value="<%= expenses[i].id %>" id="expenseId" >
+<!-- <button class="btn" type="button" onclick="deleteExpense(document.querySelector('#expenseId'))">delete</button> -->
+ <button class="btn" type="submit">Delete</button>
+
+                      </form>
+                    </div>
+                  </li>
+            <% } %>
+          </ul>
+    </div>
+    <script>
+        function deleteExpense(expenseId) {
+          const li = document.getElementById(`expense-${expenseId}`);
+          li.parentNode.removeChild(li);
+        }
+        </script>
+<script src='../public/js/expense.js'></script>
+</body>
+</html>
